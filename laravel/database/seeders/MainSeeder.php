@@ -17,6 +17,7 @@ class MainSeeder extends Seeder
         $this->call([
             ItemsTableSeeder::class,
             UsersTableSeeder::class,
+            GradeSeeder::class,
 
         ]);
     }

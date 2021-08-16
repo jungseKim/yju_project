@@ -2,12 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use SebastianBergmann\Environment\Console;
 
 class postController extends Controller
 {
+
+    public function dongs(Request $request)
+    {
+        $userId = $request->userId;
+
+
+        $count = DB::table('items')->where('user_id', $userId)->get()->count();
+
+        // for( $i=1; $i<5; $i++){
+        //     DB::table('grades')->where('id',$i)
+        // }
+
+        $users = DB::table('grades')
+            ->whereColumn([
+                [$count, '>', 'low'],
+                [$count, '<', 'high'],
+            ])->get();
+
+
+        $grade = Grade::select('grade')->whereBetween($count, ['low', 'high'])->get();
+
+        dd($users);
+    }
 
 
     public function show($id)

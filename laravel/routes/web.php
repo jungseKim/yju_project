@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dong', [postController::class, 'dongs']);
+Route::get('/dong/{userId}', [postController::class, 'dongs'])->name('dong');
 
 Route::get('/api/post', [postController::class, 'posts']);
 
