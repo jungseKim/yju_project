@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dong', [postController::class, 'dongs']);
+
 Route::get('/api/post', [postController::class, 'posts']);
 
 Route::middleware('auth:sanctum')->get('/api/show/{id}', [postController::class, 'show']);
