@@ -14,8 +14,7 @@ class AddToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('grade');
-            $table->string('address');
+            $table->string('address')->nullable();
         });
     }
 
