@@ -1,42 +1,48 @@
 <template>
-  <v-form
-  mt-10
-    ref="form"
-    v-model="valid"
-  >
+  <v-form mt-10 ref="form" v-model="valid">
+    <v-container>
+    <h1 class="title">회원가입</h1><br>
+    <span>이름</span>
     <v-text-field
       v-model="name"
       :counter="10"
       :rules="nameRules"
       label="Name"
       required
+      outlined
     ></v-text-field>
 
+    이메일
     <v-text-field
       v-model="email"
       :rules="emailRules"
-      label="E-mail"
+      label="E-mail 입력"
       required
+      outlined
     ></v-text-field>
 
+   비밀번호
    <v-text-field
    type="password"
       v-model="password"
        :rules="passwordRules"
-      label="password1"
+      label="password 입력"
       required
+      outlined
     ></v-text-field>
 
+    비밀번호 확인
        <v-text-field
         type="password"
       v-model="password2"
      
-      label="password"
+      label="password 확인"
       required
+      outlined
     ></v-text-field>
   
 
-    <v-btn
+    <v-btn block
       :disabled="!valid"
       color="success"
       class="mr-4"
@@ -45,14 +51,7 @@
      go register
     </v-btn>
 
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="reset"
-    >
-      Reset Form
-    </v-btn>
-
+    </v-container>
   </v-form>
 </template>
 
@@ -110,3 +109,9 @@ import axios from 'axios'
     },
   }
 </script>
+
+<style>
+.title{
+  text-align: center;
+}
+</style>

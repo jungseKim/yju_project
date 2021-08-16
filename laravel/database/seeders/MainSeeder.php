@@ -14,11 +14,17 @@ class MainSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UsersTableSeeder::class);
         $this->call([
             ItemsTableSeeder::class,
+<<<<<<< HEAD
             UsersTableSeeder::class,
             GradeSeeder::class,
 
+=======
+            PostsTableSeeder::class,
+>>>>>>> 2e96afd4d7e7653cee884e136220fe11b12f33bb
         ]);
+        $this->call(CommentsTableSeeder::class);
     }
 }

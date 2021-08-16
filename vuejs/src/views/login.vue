@@ -1,39 +1,42 @@
 <template>
+  <v-form class="display-1 my-10" ref="form" v-model="valid">
+    <v-container class="container">
+    <!-- <v-row>
+      <v-col cols="12" sm="6" > -->
+        <h1 class="title">로그인</h1><br>
+        <v-text-field 
+              v-model="email"
+              label="email"
+              required
+              outlined
+        ></v-text-field>
 
-  <v-form
-  class="display-1 my-10"
-    ref="form"
-     v-model="valid"
-  >
-    <v-text-field
-      v-model="email"
-      label="email"
-      required
-    ></v-text-field>
+        <v-text-field
+              v-model="password"
+              label="password"
+              required
+              outlined
+        ></v-text-field>
 
-    <v-text-field
-      v-model="password"
-      label="password"
-      required
-    ></v-text-field>
+          <v-btn block
+            :disabled="!valid"
+              color="success"
+              class="mr-4"
+              @click="login"
+          >로그인
+          </v-btn><br>
 
-    <v-btn
-    :disabled="!valid"
-      color="success"
-      class="mr-4"
-      @click="login"
-    >
-      Validate
-    </v-btn>
+          <v-btn block
+            color="primary"
+            class="mr-4"
+            @click="register"
+          >회원가입
+          </v-btn>
 
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="register"
-    >
-      register
-    </v-btn>
-
+        
+      <!-- </v-col>
+    </v-row> -->
+  </v-container>
   </v-form>
 </template>
 
@@ -73,3 +76,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  .class{
+    text-align: center;
+  }
+  .container{
+    max-width: 500px;
+  }
+</style>
