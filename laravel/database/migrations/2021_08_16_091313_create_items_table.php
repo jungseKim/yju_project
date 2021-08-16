@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('img');
             $table->foreignId('user_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->onDelete('CASCADE');
             $table->integer('price');
             $table->string('category');
             $table->boolean('sold')->default(false);
