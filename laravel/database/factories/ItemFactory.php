@@ -28,7 +28,8 @@ class ItemFactory extends Factory
             'item'=>$this->faker->word(),
             'price'=>$this->faker->randomNumber(),
             'category'=>$this->faker->word(),
-            'sold'=>$this->faker->boolean()
+            'sold'=>$this->faker->boolean(),
+            'img'=>'imgPath'
         ];
     }
 }
