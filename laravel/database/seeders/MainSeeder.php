@@ -17,7 +17,6 @@ class MainSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call([
             ItemsTableSeeder::class,
-            PostsTableSeeder::class,
         ]);
         $this->call(CommentsTableSeeder::class);
     }
