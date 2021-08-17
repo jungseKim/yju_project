@@ -1,10 +1,13 @@
 <template>
-  <v-app>
-    <v-app-bar
-        app
-        flat
+<div id="app">
+  <v-app id="inspire">
+    <v-cards
+      flat
+      height="200px"
+      tile
     >
-      <div class="d-flex align-center">
+      <v-toolbar extended>
+          
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -13,35 +16,40 @@
           transition="scale-transition"
           width="40"
         />
-
-        <v-toolbar-title>Logo</v-toolbar-title>
-        
-      </div>
-
-      <v-spacer></v-spacer>
-      <v-text-field />
-
-
-      <v-spacer></v-spacer>
   
-      <v-btn v-if="$store.state.user==null" @click="login">login
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
+        <v-toolbar-title>Logo</v-toolbar-title>
 
-        <v-btn v-else @click="logout">logOut
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
+        <v-spacer></v-spacer>
+        <v-text-field />
+        <v-spacer></v-spacer>
 
-        
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>MY
+            </v-btn>
+
+            <v-btn icon>
+              <v-icon>mdi-message-text</v-icon>채팅
+            </v-btn>
+
+            <v-btn icon>
+              <v-icon>mdi-cart-variant</v-icon>판매하기
+            </v-btn>
+
+
+       <template v-slot:extension>
+          <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        </template> 
+      </v-toolbar>
       
-    </v-app-bar>
-
+    </v-cards>
     <v-main>
       <router-view/>
     </v-main>
+    
   </v-app>
+</div>
 </template>
-
+    
 <script>
 
 export default {
@@ -71,3 +79,7 @@ export default {
    }
 };
 </script>
+
+<style scoped>
+
+</style>
