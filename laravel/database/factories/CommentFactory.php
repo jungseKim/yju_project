@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Item;
+use App\Models\Comment;
 use App\Models\User;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ItemFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Item::class;
+    protected $model = Comment::class;
 
     /**
      * Define the model's default state.
@@ -23,13 +24,9 @@ class ItemFactory extends Factory
     public function definition()
     {
         return [
-            //
             'user_id' => User::all()->random()->id,
-            'item' => $this->faker->word(),
-            'price' => $this->faker->randomNumber(),
-            'category' => $this->faker->word(),
-            'sold' => $this->faker->boolean(),
-            'img' => 'imgPath'
+            'item_id' => Item::all()->random()->id,
+            'comment' => $this->faker->text(),
         ];
     }
 }
