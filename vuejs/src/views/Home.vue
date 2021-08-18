@@ -1,33 +1,19 @@
 <template>
        <v-container>
+              <h1>물건</h1>
+              
               <v-row>
-                     <v-col>
+                     <v-col v-for="a in 15" :key="a" cols="2">
                             <v-card>
-                                   
                                    <v-img max-width="150px" contain :src="'http://localhost:8000/storage/image/어휘(N3)-5주 1일차_1628837436.jpg'" />
                                    <v-card-title>asdsfasdfs</v-card-title>
                                    <v-divider></v-divider>
                                    dsfsdf
                             </v-card>
                      </v-col>
-                     <v-col>
-                            dfdfdfdfdf
-                     </v-col>
-                     <v-col>
-                            dfdfdfdfdf
-                     </v-col>
+
               </v-row>
-              <v-row>
-                     <v-col>
-                            dfdfdfdfdf
-                     </v-col>
-                     <v-col>
-                            dfdfdfdfdf
-                     </v-col>
-                     <v-col>
-                            dfdfdfdfdf
-                     </v-col>
-              </v-row>
+              
        </v-container>
 </template>
 
@@ -55,3 +41,10 @@ export default {
        }
 }
 </script>
+
+<style scoped>
+.container {
+       max-width: 70%;
+       margin-top: 20px;
+}
+</style>
