@@ -110,8 +110,11 @@ import axios from 'axios'
   }
 </script>
 
-<style>
+<style scoped>
 .title{
   text-align: center;
 }
+.container{
+    max-width: 500px;
+  }
 </style>

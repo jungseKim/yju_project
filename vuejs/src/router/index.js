@@ -5,6 +5,11 @@ import register from '../views/register.vue'
 import home from '../views/Home.vue'
 import write from '../views/write.vue'
 import Show from '../views/Show.vue'
+import MyPage from '../views/MyPage.vue'
+import Chat from '../views/Chat.vue'
+import Sale from '../views/Sale.vue'
+import Item from '../views/Item.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,7 +17,11 @@ const routes = [
   { path: '/login', name: 'Home', component: login },
   { path: '/register', name: 'register', component: register },
   { path: '/write', name: 'write', component: write, meta: { auth: true } },
-    { path: '/Show/:postId', name: 'Show', component: Show },
+  { path: '/Show/:postId', name: 'Show', component: Show },
+  { path: '/mypage', name: 'MyPage', component: MyPage },
+  { path: '/sale', name: 'Sale', component: Sale },
+  { path: '/chat', name: 'Chat', component: Chat },
+  { path: '/item', name: 'Item', component: Item },
    
 ]
 

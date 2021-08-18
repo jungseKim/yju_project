@@ -3,7 +3,7 @@
               <h1>물건</h1>
               
               <v-row>
-                     <v-col v-for="a in 15" :key="a" cols="2">
+                     <v-col v-for="a in 100" :key="a" cols="2">
                             <v-card>
                                    <v-img max-width="150px" contain :src="'http://localhost:8000/storage/image/어휘(N3)-5주 1일차_1628837436.jpg'" />
                                    <v-card-title>asdsfasdfs</v-card-title>

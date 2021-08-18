@@ -17,7 +17,8 @@
           width="40"
         />
   
-        <v-toolbar-title>Logo</v-toolbar-title>
+        <v-toolbar-title><router-link to="/" style=" text-decoration:none">Logo</router-link></v-toolbar-title>
+        
 
         <v-spacer></v-spacer>
         <v-text-field />
@@ -26,15 +27,15 @@
         </v-btn>
         <v-spacer></v-spacer>
 
-            <v-btn icon class="mr-4">
+            <v-btn icon class="mr-4" @click="myPage">
               <v-icon>mdi-account-circle</v-icon>MY
             </v-btn>
 
-            <v-btn icon class="mr-7">
+            <v-btn icon class="mr-7" @click="chat">
               <v-icon>mdi-message-text</v-icon>채팅
             </v-btn>
 
-            <v-btn icon class="mr-5">
+            <v-btn icon class="mr-5" @click="sale">
               <v-icon>mdi-cart-variant</v-icon>판매하기
             </v-btn>
 
@@ -113,7 +114,17 @@ export default {
     },
     write(){
       this.$router.push('write');
+    },
+    myPage(){
+      this.$router.push('MyPage');
+    },
+    chat(){
+      this.$router.push('Chat');
+    },
+    sale(){
+      this.$router.push('Sale');
     }
+    
    }
 };
 </script>
