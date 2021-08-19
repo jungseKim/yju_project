@@ -14,6 +14,7 @@
         <v-text-field
               v-model="password"
               label="password"
+              :type = "'password'"
               required
               outlined
         ></v-text-field>
@@ -77,7 +78,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .class{
     text-align: center;
   }

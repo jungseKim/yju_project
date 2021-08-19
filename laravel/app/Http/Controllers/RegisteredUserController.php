@@ -16,9 +16,7 @@ class RegisteredUserController extends Controller
 {
     public function store(Request $request)
     {
-
-
-
+        //return ($request->address);
         // $request->validate([
         //     'name' => 'required|string|max:255',
         //     'email' => 'required|string|email|max:255|unique:users',
@@ -29,6 +27,7 @@ class RegisteredUserController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required'],
+            'address' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -39,13 +38,21 @@ class RegisteredUserController extends Controller
             return response($validator->errors(), 442);
         }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    
 
-        return response($user, 200);
+        // $user = User::create([
+        //     // 'name' => $request->name,
+        //     // 'email' => $request->email,
+        //     // 'password' => Hash::make($request->password),
+        //     // 'address' => $request->address
+        // ]);
+        $user=new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=$request->password;
+        $user->address=$request->address;
+            $user->save();
+        return response($user, 202);
 
         // event(new Registered($user));
 

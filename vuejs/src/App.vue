@@ -1,10 +1,13 @@
 <template>
-  <v-app>
-    <v-app-bar
-        app
-        flat
+<div id="app">
+  <v-app id="inspire">
+    <v-cards
+      flat
+      height="200px"
+      tile
     >
-      <div class="d-flex align-center">
+      <v-toolbar extended>
+          
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -13,43 +16,97 @@
           transition="scale-transition"
           width="40"
         />
-
-        <v-toolbar-title>Logo</v-toolbar-title>
-        
-      </div>
-
-      <v-spacer></v-spacer>
-      <v-text-field />
-
-
-      <v-spacer></v-spacer>
   
-      <v-btn v-if="$store.state.user==null" @click="login">login
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-
-        <v-btn v-else @click="logout">logOut
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-
+        <v-toolbar-title><router-link to="/" style=" text-decoration:none">Logo</router-link></v-toolbar-title>
         
-      
-    </v-app-bar>
 
+        <v-spacer></v-spacer>
+        <v-text-field />
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+
+            <v-btn icon class="mr-4" @click="myPage">
+              <v-icon>mdi-account-circle</v-icon>MY
+            </v-btn>
+
+            <v-btn icon class="mr-7" @click="chat">
+              <v-icon>mdi-message-text</v-icon>채팅
+            </v-btn>
+
+            <v-btn icon class="mr-5" @click="sale">
+              <v-icon>mdi-cart-variant</v-icon>판매하기
+            </v-btn>
+
+
+       <template v-slot:extension>
+          
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          
+        </template> 
+      </v-toolbar>
+      
+    </v-cards>
+    <v-navigation-drawer
+        v-model="drawer"
+        absolute
+        temporary
+      >
+      <h3 class="category">카테고리</h3>
+      <v-divider></v-divider>
+
+        <v-list dense>
+          <v-list-item
+            v-for="item in categorys"
+            :key="item.title"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
     <v-main>
       <router-view/>
     </v-main>
+    
   </v-app>
+</div>
 </template>
-
+    
 <script>
 
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return {
+      drawer: null,
+      categorys: [
+        { title: '의류', icon: 'mdi-tshirt-crew' },
+        { title: '신발', icon: 'mdi-shoe-sneaker' },
+        { title: '가방', icon: 'mdi-briefcase' },
+        { title: '시계', icon: 'mdi-watch' },
+        { title: '액세서리', icon: 'mdi-sunglasses' },
+        { title: '디지털/가전', icon: 'mdi-tablet-cellphone' },
+        { title: '스포츠/레저', icon: 'mdi-view-dashboard' },
+        { title: '차량/오토바이', icon: 'mdi-car-hatchback' },
+        { title: '음반/악기', icon: 'mdi-music-circle' },
+        { title: '도서/티켓/문구', icon: 'mdi-notebook' },
+        { title: '뷰티/미용', icon: 'mdi-hair-dryer' },
+        { title: '가구/인테리어', icon: 'mdi-sofa-single' },
+        { title: '생활/가공식품', icon: 'mdi-food' },
+        { title: '기타', icon: 'mdi-forum' },
+        
+      ],
+    }
+  },
   computed:{
       check(){
         if(!localStorage.getItem('user')){
@@ -67,7 +124,24 @@ export default {
     },
     write(){
       this.$router.push('write');
+    },
+    myPage(){
+      this.$router.push('MyPage');
+    },
+    chat(){
+      this.$router.push('Chat');
+    },
+    sale(){
+      this.$router.push('Sale');
     }
+    
    }
 };
 </script>
+
+<style scoped>
+.category{
+  margin: 10px;
+}
+</style>
+
