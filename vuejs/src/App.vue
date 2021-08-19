@@ -53,6 +53,9 @@
         absolute
         temporary
       >
+      <h3 class="category">카테고리</h3>
+      <v-divider></v-divider>
+
         <v-list dense>
           <v-list-item
             v-for="item in categorys"
@@ -86,14 +89,21 @@ export default {
     return {
       drawer: null,
       categorys: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
+        { title: '의류', icon: 'mdi-tshirt-crew' },
+        { title: '신발', icon: 'mdi-shoe-sneaker' },
+        { title: '가방', icon: 'mdi-briefcase' },
+        { title: '시계', icon: 'mdi-watch' },
+        { title: '액세서리', icon: 'mdi-sunglasses' },
+        { title: '디지털/가전', icon: 'mdi-tablet-cellphone' },
+        { title: '스포츠/레저', icon: 'mdi-view-dashboard' },
+        { title: '차량/오토바이', icon: 'mdi-car-hatchback' },
+        { title: '음반/악기', icon: 'mdi-music-circle' },
+        { title: '도서/티켓/문구', icon: 'mdi-notebook' },
+        { title: '뷰티/미용', icon: 'mdi-hair-dryer' },
+        { title: '가구/인테리어', icon: 'mdi-sofa-single' },
+        { title: '생활/가공식품', icon: 'mdi-food' },
+        { title: '기타', icon: 'mdi-forum' },
+        
       ],
     }
   },
@@ -128,4 +138,10 @@ export default {
    }
 };
 </script>
+
+<style scoped>
+.category{
+  margin: 10px;
+}
+</style>
 
