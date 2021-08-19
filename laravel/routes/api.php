@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,3 +49,4 @@ Route::post('/login', function (Request $request) {
 
     return response($response, 201);
 });
+Route::get('/item',[ItemController::class, 'index']);
