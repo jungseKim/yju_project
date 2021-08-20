@@ -49,4 +49,4 @@ Route::post('/login', function (Request $request) {
 
     return response($response, 201);
 });
-Route::get('/item',[ItemController::class, 'index']);
+Route::get('/add', [ItemController::class, 'index']);

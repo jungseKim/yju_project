@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <v-app id="inspire">
-    <v-cards
+    <v-card
       flat
       height="200px"
       tile
@@ -47,7 +47,7 @@
         </template> 
       </v-toolbar>
       
-    </v-cards>
+    </v-card>
     <v-navigation-drawer
         v-model="drawer"
         absolute

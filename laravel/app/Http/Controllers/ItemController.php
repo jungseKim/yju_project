@@ -14,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        dd(Item::all());
+        // Item::all());
+        return Item::all();
     }
 
     /**
