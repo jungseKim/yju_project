@@ -24,16 +24,16 @@ class postController extends Controller
         //     DB::table('grades')->where('id',$i)
         // }
 
-        $users = DB::table('grades')
-            ->whereColumn([
-                [$count, '>', 'low'],
-                [$count, '<', 'high'],
-            ])->get();
+        // $users = DB::table('grades')
+        //     ->whereColumn([
+        //         [$count, '>', 'low'],
+        //         [$count, '<', 'high'],
+        //     ])->get();
 
 
-        $grade = Grade::select('grade')->whereBetween($count, ['low', 'high'])->get();
+        // $grade = Grade::select('grade')->whereBetween($count, ['low', 'high'])->get();
 
-        dd($users);
+        dd($userId);
     }
 
 
@@ -90,8 +90,8 @@ class postController extends Controller
 
     public function addProduct()
     {
-
-        return 1;
+        // dd('test');
+        // return 1;
         // $category = $request->category;
         // // $imagePath = $request->imagePath;
         // $saleAddress = $request->saleAddress;
@@ -101,10 +101,10 @@ class postController extends Controller
         // $newProduct = $request->newProduct;
         // $exchange = $request->exchange;
         // $delivery = $request->delivery;s
-        $number = 3;
+        // $number = 3;
 
         // DB::table('items')->insert(['img' => '이미지', 'user_id' => Auth::user()->id, 'price' => $price, 'category' => $category, 'sold' => 0, 'content' => $content, 'productName' => $productName, 'saleAddress' => $saleAddress, 'newProduct' => $newProduct, 'exchange' => $exchange, 'delivery' => $delivery]);
-        DB::table('items')->insert(['img' => '이미지', 'user_id' => 1, 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
+        // DB::table('items')->insert(['img' => '이미지', 'user_id' => 1, 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
 
         return 1;
     }

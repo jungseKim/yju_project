@@ -52,4 +52,4 @@ Route::post('/login', function (Request $request) {
 });
 Route::get('/add', [ItemController::class, 'index']);
 
-Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
+Route::get('/addProduct', [postController::class, 'addProduct']);

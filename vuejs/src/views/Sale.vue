@@ -201,21 +201,24 @@ export default {
         //   category: this.category,
         // });
         axios
-          .post("/productAdd", {
-            content: this.content,
-            productName: this.productName,
-            saleAddress: this.saleAddress,
-            price: this.price,
-            newProduct: this.newProduct,
-            exchange: this.exchange,
-            delivery: this.delivery,
-            imagePath: this.imagePath,
-            category: this.category,
+          .get("/addProduct", {
+            // content: this.content,
+            // productName: this.productName,
+            // saleAddress: this.saleAddress,
+            // price: this.price,
+            // newProduct: this.newProduct,
+            // exchange: this.exchange,
+            // delivery: this.delivery,
+            // imagePath: this.imagePath,
+            // category: this.category,
           })
-          .then(() => {
+          .then((res) => {
             alert("판매등록성공");
+            console.log(res);
           })
-          .catch(() => {});
+          .catch((err) => {
+            console.log(err);
+          });
     },
   },
 };
