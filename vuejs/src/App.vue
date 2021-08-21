@@ -39,6 +39,14 @@
               <v-icon>mdi-cart-variant</v-icon>판매하기
             </v-btn>
 
+            <v-btn icon class="mr-5" v-if="$store.state.user==null" @click="login">
+              <v-icon>mdi-cart-variant</v-icon>login
+            </v-btn>
+
+            <v-btn icon class="mr-5" v-else @click="logout">
+              <v-icon>mdi-cart-variant</v-icon>logout
+            </v-btn>
+
 
        <template v-slot:extension>
           
