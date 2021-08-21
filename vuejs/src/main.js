@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
 import store from './store'
+import product from './store/modules/product'
 
 import axios from 'axios'
 
@@ -15,6 +16,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api'
 
 new Vue({
   router,
+  product,
   store,
   vuetify,
   created () {
