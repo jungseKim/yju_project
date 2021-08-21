@@ -125,9 +125,10 @@ import axios from 'axios'
               console.log(response.status)
               this.$router.push('/login');
        }).catch(err=>{
-               console.log(err.response.data);
-               alert('사용불가능한 이메일 입니다')
-               this.email='';
+               console.log(err);
+              //  console.log(this.email);
+              //  alert('사용불가능한 이메일 입니다')
+              //  this.email='';
                
        })
       },

@@ -3,6 +3,7 @@
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\postController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -50,3 +51,5 @@ Route::post('/login', function (Request $request) {
     return response($response, 201);
 });
 Route::get('/add', [ItemController::class, 'index']);
+
+Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');

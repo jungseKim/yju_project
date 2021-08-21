@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,7 @@ class postController extends Controller
 
     public function show($id)
     {
-        //유저이름 같이 보내주기 
+        //유저이름 같이 보내주기
         //longbe 머시기 사용하기
         return Post::find($id);
     }
@@ -84,5 +85,26 @@ class postController extends Controller
 
         $request->file('file')->storeAs('public/image', $fileName);
         return $fileName;
+    }
+
+    public function addProduct()
+    {
+
+        return 1;
+        // $category = $request->category;
+        // // $imagePath = $request->imagePath;
+        // $saleAddress = $request->saleAddress;
+        // $productName = $request->productName;
+        // $content = $request->content;
+        // $price = $request->price;
+        // $newProduct = $request->newProduct;
+        // $exchange = $request->exchange;
+        // $delivery = $request->delivery;s
+        $number = 3;
+
+        // DB::table('items')->insert(['img' => '이미지', 'user_id' => Auth::user()->id, 'price' => $price, 'category' => $category, 'sold' => 0, 'content' => $content, 'productName' => $productName, 'saleAddress' => $saleAddress, 'newProduct' => $newProduct, 'exchange' => $exchange, 'delivery' => $delivery]);
+        DB::table('items')->insert(['img' => '이미지', 'user_id' => 1, 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
+
+        return 1;
     }
 }
