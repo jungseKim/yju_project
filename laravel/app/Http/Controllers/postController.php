@@ -39,7 +39,7 @@ class postController extends Controller
 
     public function show($id)
     {
-        //유저이름 같이 보내주기 
+        //유저이름 같이 보내주기
         //longbe 머시기 사용하기
         return Post::find($id);
     }
@@ -101,6 +101,7 @@ class postController extends Controller
         // $newProduct = $request->newProduct;
         // $exchange = $request->exchange;
         // $delivery = $request->delivery;s
+        // 2yubi > main
 
         // DB::table('items')->insert(['img' => '이미지', 'user_id' => Auth::user()->id, 'price' => $price, 'category' => $category, 'sold' => 0, 'content' => $content, 'productName' => $productName, 'saleAddress' => $saleAddress, 'newProduct' => $newProduct, 'exchange' => $exchange, 'delivery' => $delivery]);
         DB::table('items')->insert(['img' => '이미지', 'user_id' => 1, 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
