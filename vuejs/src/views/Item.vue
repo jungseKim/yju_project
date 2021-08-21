@@ -23,7 +23,6 @@
             </v-card>
         </v-container><br><br>
         <v-container>
-            <div class="kk2">
                 <v-tabs
                 fixed-tabs
                 background-color="indigo"
@@ -43,7 +42,6 @@
                 </v-tabs>
                 <v-container class="qq">
                 </v-container>               
-            </div>
         </v-container>
     </v-container>
     
