@@ -6,6 +6,8 @@ import store from './store'
 
 import axios from 'axios'
 
+const cors = require('cors');
+app.use(cors());
 
 Vue.config.productionTip = false
 
