@@ -24,6 +24,12 @@ class CreateItemsTable extends Migration
             $table->string('category');
             $table->boolean('sold')->default(false);
             $table->timestamps();
+            $table->String('content');
+            $table->string('productName');
+            $table->string('saleAddress');
+            $table->string('newProduct');
+            $table->string('exchange');
+            $table->string('delivery');
         });
     }
 
