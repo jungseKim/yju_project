@@ -54,7 +54,7 @@
                         :key="i"
                         :value="'tab-' + i"
                     >
-                        <v-card flat>
+                        <v-card flat height="400px">
                         <v-card-text>{{ text }}</v-card-text>
                         </v-card>
                     </v-tab-item>
