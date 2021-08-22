@@ -76,8 +76,6 @@ import axios from 'axios'
       password2:'',
       password_confirmation:true,
       address:'',
-
-
       addressNum:'',
       
       nameRules: [
