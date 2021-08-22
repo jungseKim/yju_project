@@ -6,7 +6,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: 
+
+    null
+      
   },
 
   mutations: {
@@ -40,9 +43,11 @@ export default new Vuex.Store({
       try {
         const response = await axios.get('http://localhost:8000/sanctum/csrf-cookie')
       console.log(response.status);
+      
      const {data}= await axios.post('/login', credentials)
       commit('setUserData', data);
       } catch (err) {
+        console.log('asdsadsad')
         console.error(err);
       }
     },

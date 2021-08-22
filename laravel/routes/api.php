@@ -30,11 +30,20 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', function (Request $request) {
     $data = $request->validate([
         'email' => 'required|email',
-        'password' => 'required'
+        'password' => 'required',
+
     ]);
 
     $user = User::where('email', $request->email)->first();
 
+    // echo "<script>console.log( 'PHP_Console: " . $user->password . $request->password . '안녕wsss' . "' );</script>";
+
+
+    // if (!$user || !Hash::check($request->password, $user->password)) {
+    //     return response([
+    //         'message' => ['These credentials do not match our records.']
+    //     ], 404);
+    // }
     if (!$user || !Hash::check($request->password, $user->password)) {
         return response([
             'message' => ['These credentials do not match our records.']
@@ -48,8 +57,12 @@ Route::post('/login', function (Request $request) {
         'token' => $token
     ];
 
+
+
     return response($response, 201);
 });
+
 Route::get('/add', [ItemController::class, 'index']);
 
-Route::get('/addProduct', [postController::class, 'addProduct']);
+// Route::middleware('auth:sanctum')->post('/addProduct', [postController::class, 'addProduct']);
+Route::post('/addProduct', [postController::class, 'addProduct']);
