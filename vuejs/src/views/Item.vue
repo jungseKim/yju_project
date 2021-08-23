@@ -2,25 +2,25 @@
     <v-container>
         <v-container class="mb-5">
             <v-row>
-                <v-img width="200" max-height="400" contain :src="'http://localhost:8000/storage/image/KakaoTalk_20210418_150600792_1628837294.jpg'" />
+                <v-img width="200" max-height="400" contain :src="imagePath+serSerarch(item.img)" />
                 <v-col cols="8" class="pa-0">
                     <v-card height="100" class="mb-1" flat outlined>
-                        <h1 align="center">여기는 제목 칸 입니다</h1>
-                        <h2 align="right">여기는 금액 칸</h2>
+                        <h1 align="center">{{ item.productName }}</h1>
+                        <h2 align="right">{{ item.price }}</h2>
                     </v-card>
                     <v-divider></v-divider>
                     <v-card height="200" class="mb-1" flat outlined>
                         <v-row>
                             <v-col cols="2"><v-card-text>상품상태</v-card-text></v-col>
-                            <v-col><v-card-text>중고</v-card-text></v-col>
+                            <v-col><v-card-text>{{ item.newProduct }}</v-card-text></v-col>
                         </v-row>
                         <v-row class="mt-0">
                             <v-col cols="2"><v-card-text>교환여부</v-card-text></v-col>
-                            <v-col><v-card-text>교환불가능</v-card-text></v-col>
+                            <v-col><v-card-text>{{ item.exchange }}</v-card-text></v-col>
                         </v-row>
                         <v-row class="mt-0">
                             <v-col cols="2"><v-card-text>거래지역</v-card-text></v-col>
-                            <v-col><v-card-text>대구광역시 북구</v-card-text></v-col>
+                            <v-col><v-card-text>{{ address }}</v-card-text></v-col>
                         </v-row>
                     </v-card>
                     <v-card height="60" class="d-flex justify-space-between mt-9" flat outlined>
@@ -76,7 +76,7 @@
                         :value="'tab-' + i"
                     >
                         <v-card flat height="400px">
-                        <v-card-text>{{ text }}</v-card-text>
+                        <v-card-text>{{ contentSearch(i) }}</v-card-text>
                         </v-card>
                     </v-tab-item>
                 </v-tabs-items>              
@@ -87,15 +87,44 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 export default {
     data() {
         return {
             item : {},
             tab: null,
-            text : ''
+            text : '',
+            imagePath: 'http://localhost:8000/storage/image/',
+            address : ''
         }
 
-    }
+    },
+    methods:{
+              serSerarch(e){
+                     if(!e){
+                            return 'noimage.jpg'
+                     }else{return e}
+              },
+              contentSearch(i){
+                  if(i == 1){
+                      this.text = this.item.content
+                      return this.text
+                  }
+              }
+    },
+    mounted() {
+        axios.get('/item/'+this.$route.params.itemId)
+              .then(response=>{
+                    //  console.log(1)
+                     console.log(response.data)
+                     this.item=response.data[0]
+                     this.address=response.data[1]
+              })
+              .catch(err => {
+                     console.log(err)
+              })
+    },
 }
 </script>
 
