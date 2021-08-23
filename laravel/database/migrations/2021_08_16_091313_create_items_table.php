@@ -15,21 +15,19 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('item');
+
             $table->string('img');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('CASCADE');
             $table->integer('price');
-            $table->string('category');
-            $table->boolean('sold')->default(false);
+            $table->string('item');
+            $table->string('category')->nullable();
+            $table->boolean('sold')->default(false)->nullable();
             $table->timestamps();
-            $table->String('content');
-            $table->string('productName');
-            $table->string('saleAddress');
-            $table->string('newProduct');
-            $table->string('exchange');
-            $table->string('delivery');
+            $table->String('content')->nullable();
+            $table->string('newProduct')->nullable();
+            $table->string('exchange')->nullable();
         });
     }
 
