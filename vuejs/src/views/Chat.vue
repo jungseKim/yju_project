@@ -10,7 +10,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    
+    mounted(){
+        axios.get('/chatList')
+        .then(response=>{
+         console.log(response.data);
+        })
+    }
 }
 </script>

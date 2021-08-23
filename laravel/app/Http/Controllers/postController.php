@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use App\Models\Item;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class postController extends Controller
 
     public function posts()
     {
-        return Post::all();
+        return Item::all();
     }
     public function store(Request $request)
     {
