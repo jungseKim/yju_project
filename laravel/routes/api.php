@@ -52,4 +52,6 @@ Route::post('/login', function (Request $request) {
 });
 Route::get('/add', [ItemController::class, 'index']);
 
+Route::get('/item/{id}', [ItemController::class, 'show']);
+
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');

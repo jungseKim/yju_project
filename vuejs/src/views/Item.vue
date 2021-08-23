@@ -1,21 +1,42 @@
 <template>
     <v-container>
-        <v-container>
-            <v-row class="row1">
-                <v-img width="200" max-height="400" contain :src="'http://localhost:8000/storage/image/KakaoTalk_20210418_150600792_1628837294.jpg'" />
-                <v-col cols="8">
-                    <v-card height="120" class="mb-1">1</v-card>
-                    <v-card height="120" class="mb-1">2</v-card>
-                    <v-card height="120" class="mb-1">3</v-card>
+        <v-container class="mb-5">
+            <v-row>
+                <v-img width="200" max-height="400" contain :src="imagePath+serSerarch(item.img)" />
+                <v-col cols="8" class="pa-0">
+                    <v-card height="100" class="mb-1" flat outlined>
+                        <h1 align="center">{{ item.productName }}</h1>
+                        <h2 align="right">{{ item.price }}</h2>
+                    </v-card>
+                    <v-divider></v-divider>
+                    <v-card height="200" class="mb-1" flat outlined>
+                        <v-row>
+                            <v-col cols="2"><v-card-text>상품상태</v-card-text></v-col>
+                            <v-col><v-card-text>{{ item.newProduct }}</v-card-text></v-col>
+                        </v-row>
+                        <v-row class="mt-0">
+                            <v-col cols="2"><v-card-text>교환여부</v-card-text></v-col>
+                            <v-col><v-card-text>{{ item.exchange }}</v-card-text></v-col>
+                        </v-row>
+                        <v-row class="mt-0">
+                            <v-col cols="2"><v-card-text>거래지역</v-card-text></v-col>
+                            <v-col><v-card-text>{{ address }}</v-card-text></v-col>
+                        </v-row>
+                    </v-card>
+                    <v-card height="60" class="d-flex justify-space-between mt-9" flat outlined>
+                        <v-btn width="200" height="60">찜</v-btn>
+                        <v-btn width="200" height="60">연락하기</v-btn>
+                        <v-btn width="200" height="60">바로구매</v-btn>
+                    </v-card>
                 </v-col>
             </v-row>
             
         </v-container>
         <v-divider></v-divider>
-        <v-container>
+        <v-container class="mt-3">
             <h3>연관상품</h3>
             <v-card>
-                <v-row class="row">
+                <v-row class="row1">
                     <v-col v-for="a in 5" :key="a" class="col" cols="2">
                         <v-card height="130">
                             <v-img width="200" max-height="100" contain :src="'http://localhost:8000/storage/image/KakaoTalk_20210418_150600792_1628837294.jpg'" />
@@ -27,7 +48,7 @@
             </v-card>
         </v-container><br><br>
         <v-container>
-            <v-card>
+            <v-card outlined flat>
                 <v-tabs
                 v-model="tab"
                 fixed-tabs
@@ -54,8 +75,8 @@
                         :key="i"
                         :value="'tab-' + i"
                     >
-                        <v-card flat>
-                        <v-card-text>{{ text }}</v-card-text>
+                        <v-card flat height="400px">
+                        <v-card-text>{{ contentSearch(i) }}</v-card-text>
                         </v-card>
                     </v-tab-item>
                 </v-tabs-items>              
@@ -66,14 +87,44 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 export default {
     data() {
         return {
+            item : {},
             tab: null,
-            text : 'sdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+            text : '',
+            imagePath: 'http://localhost:8000/storage/image/',
+            address : ''
         }
 
-    }
+    },
+    methods:{
+              serSerarch(e){
+                     if(!e){
+                            return 'noimage.jpg'
+                     }else{return e}
+              },
+              contentSearch(i){
+                  if(i == 1){
+                      this.text = this.item.content
+                      return this.text
+                  }
+              }
+    },
+    mounted() {
+        axios.get('/item/'+this.$route.params.itemId)
+              .then(response=>{
+                    //  console.log(1)
+                     console.log(response.data)
+                     this.item=response.data[0]
+                     this.address=response.data[1]
+              })
+              .catch(err => {
+                     console.log(err)
+              })
+    },
 }
 </script>
 
@@ -87,7 +138,7 @@ export default {
         height: 120px;
     }
 
-    .row{
+    .row1{
         background: brown;
         margin-top: 5px;
         display: flex;

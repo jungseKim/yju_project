@@ -21,7 +21,7 @@ const routes = [
   { path: '/mypage', name: 'MyPage', component: MyPage },
   { path: '/sale', name: 'Sale', component: Sale },
   { path: '/chat', name: 'Chat', component: Chat },
-  { path: '/item', name: 'Item', component: Item },
+  { path: '/item/:itemId', name: 'Item', component: Item },
    
 ]
 
