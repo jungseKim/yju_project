@@ -124,7 +124,7 @@
           <v-textarea outlined auto-grow clearable v-model="content" />
         </v-card-text>
 
-        <v-btn color="green darken-1" type="submit"> 네 </v-btn>
+        <v-btn color="green darken-1" type="submit">판매하기 </v-btn>
       </v-form>
     </v-card>
   </div>
