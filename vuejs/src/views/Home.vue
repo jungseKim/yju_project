@@ -2,7 +2,7 @@
        <v-container>
               <h1>물건</h1>
               
-              <v-row>
+              <v-row width="1100px">
                      <v-col v-for="item in items" :key="item.id">
                             <v-card width="270px" height="270px" style="text-align:right">
                                    <v-img width="270px" max-height="150" contain :src="imagePath+serSerarch(item.img)" />
@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .container {
-       max-width: 70%;
+       width: 1200px;
        margin-top: 20px;
 }
 </style>

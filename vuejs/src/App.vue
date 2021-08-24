@@ -125,22 +125,22 @@ export default {
   },
    methods: {
     logout () {
-      this.$store.dispatch('logout')
+      this.$store.dispatch('/logout')
     },
     login(){
-      this.$router.push('login');
+      this.$router.push('/login');
     },
     write(){
-      this.$router.push('write');
+      this.$router.push('/write');
     },
     myPage(){
-      this.$router.push('MyPage');
+      this.$router.push('/MyPage');
     },
     chat(){
-      this.$router.push('Chat');
+      this.$router.push('/Chat');
     },
     sale(){
-      this.$router.push('Sale');
+      this.$router.push('/Sale');
     }
     
    }

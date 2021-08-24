@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -50,10 +51,11 @@ class ItemController extends Controller
     {
         // echo "<script>console.log('PHP_Console:".$id."');<script>";
         $item = Item::find($id);
+        $relatedProducts = DB::table('items')->where('category', $item->category)->where('productName', '<>', $item->productName)->get();
         $user = User::find($item->user_id);
-        // echo "<script>console.log('PHP_Console:".$user."');<script>";
+        //  echo "<script>console.log('PHP_Console:".$category."');<script>";
         $address = $user->address;
-        return [Item::find($id), $address];
+        return [Item::find($id), $address, $relatedProducts];
     }
 
     /**
