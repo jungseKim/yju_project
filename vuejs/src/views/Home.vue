@@ -1,8 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <v-container>
-    <h1>물건</h1>
-=======
        <v-container>
               <h1>물건</h1>
               
@@ -17,7 +13,6 @@
                                    {{ item.created_at }}
                             </v-card>
                      </v-col>
->>>>>>> 29a57004a1c543ebbd5ea0a1a75db51b66981f85
 
     <v-row>
       <v-col v-for="item in items" :key="item.id">
