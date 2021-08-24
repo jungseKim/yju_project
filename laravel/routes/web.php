@@ -35,3 +35,5 @@ Route::middleware('auth:sanctum')->get('/api/chatList', [ChatController::class, 
 // Route::get('/api/item/{id}', [ItemController::class, 'show']);
 
 Route::middleware('auth:sanctum')->post('/api/chatPost', [ChatController::class, 'post']);
+
+Route::middleware('auth:sanctum')->post('/api/chatStore', [ChatController::class, 'store']);

@@ -25,7 +25,7 @@
                     </v-card>
                     <v-card height="60" class="d-flex justify-space-between mt-9" flat outlined>
                         <v-btn width="200" height="60">찜</v-btn>
-                        <v-btn width="200" height="60">연락하기</v-btn>
+                        <v-btn width="200" height="60" @click="chat">연락하기</v-btn>
                         <v-btn width="200" height="60">바로구매</v-btn>
                     </v-card>
                 </v-col>
@@ -101,6 +101,9 @@ export default {
 
     },
     methods:{
+            chat(){
+                axios.post('/chatStore')
+                },
               serSerarch(e){
                      if(!e){
                             return 'noimage.jpg'
