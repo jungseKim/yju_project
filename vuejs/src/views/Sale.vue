@@ -2,17 +2,27 @@
   <div>
     <v-card>
       <v-card-title> 상품등록 </v-card-title>
-      <v-form ref="form" v-model="valid" @submit.prevent="onSubmitForm">
+      <v-form ref="form" v-model="valid" @submit.prevent="onsubmitForm">
         <v-card-text>
           <div><h3>*이미지업로드</h3></div>
           <br />
 
-          <input type="file" multiple ref="imageInput" />
+          <div v-if="!image">
+            <h2>Select an image</h2>
+
+            <input
+              ref="productImage"
+              type="file"
+              @change="onFileChange"
+              name="imgfile"
+              enctype="multipart/form-data"
+            />
+          </div>
+          <div v-else>
+            <img :src="image" />
+            <button type="button" @click="removeImage">Remove image</button>
+          </div>
         </v-card-text>
-        <img
-          src="C:\Users\김동영\Desktop\학교\ㅅㅅ\yju_project\vuejs\src\assets\noimg.gif"
-          alt=""
-        />
 
         <hr />
 
@@ -79,17 +89,6 @@
         <hr />
 
         <v-card-text>
-          <div><h3>*판매위치</h3></div>
-          <v-text-field
-            :rules="saleAddressRules"
-            placeholder="판매위치를 입력해주세요"
-            style="width: 500px"
-            v-model="saleAddress"
-          />
-        </v-card-text>
-        <hr />
-
-        <v-card-text>
           <div><h3>*상품상태</h3></div>
           <p>{{ newProduct }}</p>
           <v-checkbox v-model="newProduct" label="새상품" value="새상품">
@@ -117,10 +116,6 @@
             v-model="price"
             style="width: 200px"
           />
-          <v-checkbox v-model="delivery" label="무료배송" value="무료배송">
-          </v-checkbox>
-          <v-checkbox v-model="delivery" label="배송비별도" value="배송비별도">
-          </v-checkbox>
         </v-card-text>
         <hr />
 
@@ -128,31 +123,8 @@
           <div><h3>*상품설명</h3></div>
           <v-textarea outlined auto-grow clearable v-model="content" />
         </v-card-text>
-        <v-card-text>
-          <v-btn color="green" rounded large dark @click.stop="dialog = true">
-            판매하기
-          </v-btn>
 
-          <v-dialog v-model="dialog" max-width="290">
-            <v-card>
-              <v-card-title class="text-h5"> 판매하시겠습니까? </v-card-title>
-
-              <v-card-text> </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-
-                <v-btn color="green darken-1" text @click="dialog = false">
-                  아니오
-                </v-btn>
-
-                <v-btn color="green darken-1" type="submit" @click="asd" text>
-                  네
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-card-text>
+        <v-btn color="green darken-1" type="submit">판매하기 </v-btn>
       </v-form>
     </v-card>
   </div>
@@ -165,8 +137,8 @@ export default {
     return {
       category: "",
       valid: false,
-      imagePath: "ss",
-      saleAddress: "",
+      productImage: "",
+      image: "",
       productName: "",
       content: "",
       price: "",
@@ -174,58 +146,61 @@ export default {
       dialog: false,
       dialogs: false,
       exchange: "", //교환가능한지?
-      delivery: "", //배송비붙는지?
-      saleAddressRules: [(v) => !!v || "위치정보는 필수입니다"],
+
       productNameRules: [(v) => !!v || "상품이름은 필수입니다"],
       priceRules: [(v) => !!v || "가격은 필수입니다"],
     };
   },
+  mounted() {
+    console.log(this.$store.state.user.user.id);
+  },
   methods: {
     onsubmitForm() {
+      console.log(this.productImage);
       if (this.$refs.form.validate()) {
-        console.log(this.productName);
+        const form = new FormData();
+        form.append("category", this.category);
+        form.append("content", this.content);
+        form.append("productName", this.productName);
+        form.append("price", this.price);
+        form.append("newProduct", this.newProduct);
+        form.append("exchange", this.exchange);
+        form.append("userId", this.$store.state.user.user.id);
+        form.append("productImage", this.productImage);
+        axios
+          .post("/addProduct", form)
+          .then((res) => {
+            alert("판매등록성공");
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(this.image + "sadasd");
+            console.log(err);
+          });
       }
     },
-    asd() {
-      // console.log(this.productName);
-      (this.dialog = false),
-        // this.$store.dispatch("productAdd", {
-        //   content: this.content,
-        //   productName: this.productName,
-        //   saleAddress: this.saleAddress,
-        //   price: this.price,
-        //   newProduct: this.newProduct,
-        //   exchange: this.exchange,
-        //   delivery: this.delivery,
-        //   imagePath: this.imagePath,
-        //   category: this.category,
-        // });
-        axios
-          .post("/productAdd", {
-            content: this.content,
-            productName: this.productName,
-            saleAddress: this.saleAddress,
-            price: this.price,
-            newProduct: this.newProduct,
-            exchange: this.exchange,
-            delivery: this.delivery,
-            imagePath: this.imagePath,
-            category: this.category,
-          })
-          .then(() => {
-            alert("판매등록성공");
-          })
-          .catch(() => {});
+    onFileChange(e) {
+      this.productImage = this.$refs.productImage.files[0];
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function () {
+      this.image = "";
     },
   },
 };
 </script>
 
 <style >
-#dong {
-  /* flex-direction: column-reverse; */
-  /* justify-content: center; */
-}
 #d {
   margin-left: 20px;
 }

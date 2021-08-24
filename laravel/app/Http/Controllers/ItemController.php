@@ -16,6 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         // Item::all());
+
         return Item::all();
     }
 
