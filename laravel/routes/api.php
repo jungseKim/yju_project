@@ -66,3 +66,5 @@ Route::get('/add', [ItemController::class, 'index']);
 
 // Route::middleware('auth:sanctum')->post('/addProduct', [postController::class, 'addProduct']);
 Route::post('/addProduct', [postController::class, 'addProduct']);
+
+Route::post('/imagepath', [postController::class, 'imagepath']);
