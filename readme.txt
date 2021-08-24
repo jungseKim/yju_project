@@ -20,3 +20,7 @@ user : id, email, password, 등급, 위치,
 댓글 : id, user_id,물품id, comment
 
 연관테이블 : id, user_id,  덜 만든거 
+
+오늘 배운것
+mounted는 바로 화면을 보여주는 부분이기 때문에 
+patch는 들어가서는 안된다.

@@ -54,4 +54,6 @@ Route::get('/add', [ItemController::class, 'index']);
 
 Route::post('/profile', [UserController::class, 'profile']);
 
+Route::patch('/addressUpdate', [UserController::class, 'addressUpdate']);
+
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');

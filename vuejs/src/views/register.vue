@@ -126,7 +126,6 @@ import axios from 'axios'
                console.log(err.response.data);
                alert('사용불가능한 이메일 입니다')
                this.email='';
-               
        })
       },
       reset () {

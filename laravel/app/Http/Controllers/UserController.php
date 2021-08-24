@@ -22,17 +22,24 @@ class UserController extends Controller
         // $request->bearerToken()
     }
 
-    public function profile(Request $request){
-        $userId=$request->userId;
+    public function profile(Request $request)
+    {
+        $userId = $request->userId;
 
-        $users= DB::table('users')->where('id',$userId)->get();
+        $users = DB::table('users')->where('id', $userId)->get();
 
         return response()->json($users);
     }
 
-    public function addressUpdate(Request $request){
-        // $userId=$request->userId;
-        dd($request);
+    public function addressUpdate(Request $request)
+    {
+        $addressUpdate = $request->address;
+        $userId = $request->userId;
 
+        $dd = DB::table('users')
+            ->where('id', $userId)
+            ->update(['address' => $addressUpdate]);
+
+        return redirect('/');
     }
 }
