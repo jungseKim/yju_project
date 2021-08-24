@@ -25,11 +25,15 @@ class ItemFactory extends Factory
         return [
             //
             'user_id' => User::all()->random()->id,
-            'item' => $this->faker->word(),
+            // 'item' => $this->faker->word(),
             'price' => $this->faker->randomNumber(),
             'category' => $this->faker->word(),
             'sold' => $this->faker->boolean(),
-            'img' => 'imgPath'
+            'img' => 'noimage.jpg',
+            'content' => $this->faker->word(),
+            'item' => $this->faker->word(),
+            'newProduct' => $this->faker->word(),
+            'exchange' => $this->faker->word(),
         ];
     }
 }

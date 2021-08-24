@@ -27,6 +27,10 @@ class CreateItemsTable extends Migration
             $table->string('productName')->nullable();
             $table->string('newProduct')->nullable();
             $table->string('exchange')->nullable();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29a57004a1c543ebbd5ea0a1a75db51b66981f85
         });
     }
 

@@ -1,6 +1,23 @@
 <template>
+<<<<<<< HEAD
   <v-container>
     <h1>물건</h1>
+=======
+       <v-container>
+              <h1>물건</h1>
+              
+              <v-row>
+                     <v-col v-for="item in items" :key="item.id">
+                            <v-card width="270px" height="270px" style="text-align:right">
+                                   <v-img width="270px" max-height="150" contain :src="imagePath+serSerarch(item.img)" />
+                                   <v-divider></v-divider>
+                                   <v-card-title><router-link :to="'/item/'+item.id" style=" text-decoration:none">{{ item.productName }}</router-link></v-card-title>
+                                   <v-card-text style="padding:0" >{{ item.price }}원</v-card-text>
+                                   <v-divider></v-divider>
+                                   {{ item.created_at }}
+                            </v-card>
+                     </v-col>
+>>>>>>> 29a57004a1c543ebbd5ea0a1a75db51b66981f85
 
     <v-row>
       <v-col v-for="item in items" :key="item.id">

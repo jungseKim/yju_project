@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -48,7 +49,12 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        // echo "<script>console.log('PHP_Console:".$id."');<script>";
+        $item = Item::find($id);
+        $user = User::find($item->user_id);
+        // echo "<script>console.log('PHP_Console:".$user."');<script>";
+        $address = $user->address;
+        return [Item::find($id), $address];
     }
 
     /**

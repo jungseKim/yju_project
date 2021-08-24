@@ -20,3 +20,9 @@ user : id, email, password, 등급, 위치,
 댓글 : id, user_id,물품id, comment
 
 연관테이블 : id, user_id,  덜 만든거 
+
+
+-APP_KEY-
+
+APP_KEY키를 생성하지 않고 로그인시 csrf 500에러가 발생한다
+해결법은 해당 Laravel서버에서 APP_KEY를 받고 작업해야한다
