@@ -59,16 +59,22 @@ export default {
           password: this.password
         })
         .then(() => {
-          this.$router.push({ name: 'map' })
+          if(!this.$store.state.user){
+            console.log('login failed')
+            alert('이메일과 비밀번호를 확인해주세요.')
+          }
+          else{
+            console.log('login successed')
+            this.$router.push({ name: 'map' })
+          }
         })
         .catch(err => {
-          console.log(err.message)
-          alert('아이디와 비밀번호를 확인해 주세요')
+          console.log(err)
         })
     },
     register(){
       if(this.$store.state.user){
-        return alert('로그 아웃후 이용해 주세요');
+        return alert('로그아웃 후 이용해주세요.');
       }
       else{
         this.$router.push('register')
