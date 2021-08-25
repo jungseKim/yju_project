@@ -5,7 +5,7 @@
               <v-row width="1100px">
                      <v-col v-for="item in items" :key="item.id">
                             <v-card width="270px" height="270px" style="text-align:right">
-                                   <v-img width="270px" max-height="150" contain :src="imagePath+serSerarch(item.img)" />
+                                   <v-img width="270px" height="150" contain :src="imagePath+serSerarch(item.img)" />
                                    <v-divider></v-divider>
                                    <v-card-title><router-link :to="'/item/'+item.id" style=" text-decoration:none">{{ item.productName }}</router-link></v-card-title>
                                    <v-card-text style="padding:0" >{{ item.price }}원</v-card-text>

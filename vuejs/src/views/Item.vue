@@ -39,7 +39,7 @@
                 <v-row class="row1">
                     <v-col v-for="product in relatedProducts" :key="product.id" class="col" cols="2">
                         <v-card height="130" tile>
-                            <v-img width="200" max-height="100" contain :src="imagePath+serSerarch(product.img)" />
+                            <v-img width="200" height="100" contain :src="imagePath+serSerarch(product.img)" />
                             <v-divider></v-divider>
                             <v-btn plain small block @click="relatedProduct(product.id)">{{ product.productName }}</v-btn>
                         </v-card>
@@ -81,6 +81,27 @@
                                 <v-divider></v-divider>
                                 <p class="productinfo">{{ contentSearch(i) }}</p>
                                 <v-divider></v-divider>
+                                <v-row>
+                                    <v-col>
+                                        <v-card-subtitle>
+                                            <v-icon>mdi-map-marker-radius</v-icon>
+                                            거래지역
+                                        </v-card-subtitle>
+                                        <v-card-text>
+                                            {{ address }}
+                                        </v-card-text>
+                                    </v-col>
+                                    <v-col>
+                                        <v-card-subtitle>
+                                            <v-icon>mdi-menu</v-icon>
+                                             카테고리
+                                        </v-card-subtitle>
+                                        <v-card-text>
+                                            {{ item.category }}
+                                        </v-card-text>
+                                    </v-col>
+
+                                </v-row>
                             </div>
                             <div v-else>
                                 <h3>상품문의</h3>
