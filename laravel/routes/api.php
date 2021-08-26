@@ -58,8 +58,10 @@ Route::get('/add', [ItemController::class, 'index']);
 Route::post('/comment/{itemId}', [RegisteredUserController::class, 'store']);
 
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
-Route::middleware('auth:sanctum')->post('/deleteAccount', function (Request $request) {
+
+Route::middleware('auth:sanctum')->post('/deleteAccount', function () {
     $userId=Auth::user()->id;
+    
     DB::delete('DELETE FROM users WHERE id = ?', [$userId]);
     
     // $user->delete();

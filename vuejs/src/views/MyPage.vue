@@ -17,17 +17,21 @@ export default {
     methods:{
         deleteAccount(){
             axios.post('/deleteAccount').then(res=>{
-                    // this.text=res.data.id;
+                // this.text=res.data.id;
+                     this.$store.dispatch('logout')
+                    const home = window.location.origin;
                     this.text=res.data;
                     alert(this.text);
+                    // location.href=`${home}/api/logout`;
+                    location.href=home;
                 }
             )
             // axios.post('/get').then(res=>{
-            //     console.log(res);
+                //     console.log(res);
             //     this.text=res.data;
             //     }
             // )
-        }
+        },
     }
 }
 </script>
