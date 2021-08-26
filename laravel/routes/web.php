@@ -20,6 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth:sanctum')->get('/api/room/{id}', [ChatController::class, 'room'])->name('room');
+
 Route::get('/dong/{userId}', [postController::class, 'dongs'])->name('dong');
 
 Route::get('/api/post', [postController::class, 'posts']);
@@ -36,4 +38,4 @@ Route::middleware('auth:sanctum')->get('/api/chatList', [ChatController::class, 
 
 Route::middleware('auth:sanctum')->post('/api/chatPost', [ChatController::class, 'post']);
 
-Route::middleware('auth:sanctum')->post('/api/chatStore', [ChatController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/api/ChatRoom/{id}', [ChatController::class, 'store']);

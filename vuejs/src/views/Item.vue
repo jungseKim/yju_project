@@ -102,7 +102,11 @@ export default {
     },
     methods:{
             chat(){
-                axios.post('/chatStore')
+                if(this.item.id)
+                    // this.$router.push('/ChatRoom/'+this.$route.params.item.itemId);
+                  this.$router.push({name: 'ChatRoom', params: {itemId:this.item.id,from:'item'}})
+                    //   this.$router.push({ name: 'ChatRoom', params: {itemId: this.$route.params.itemId} })
+                
                 },
               serSerarch(e){
                      if(!e){

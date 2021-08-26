@@ -41,4 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function items()
+    {
+        $arr = [];
+        $Items = $this->hasMany(Item::class)->get();
+        foreach ($Items as $Item) {
+            $temp = $Item->ItemToChat();
+            if (sizeof($temp)) {
+                $Item->ars = $temp;
+                // array_unshift($temp, $Item);
+                array_push($arr, $Item);
+            }
+        }
+        // return Item::find($a)->ItemToChat();
+        return $arr;
+    }
 }

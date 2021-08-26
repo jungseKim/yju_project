@@ -7,7 +7,7 @@
                             <v-card width="270px" height="270px" style="text-align:right">
                                    <v-img width="270px" max-height="150" contain :src="imagePath+serSerarch(item.img)" />
                                    <v-divider></v-divider>
-                                   <v-card-title><router-link :to="'/item/'+item.id" style=" text-decoration:none">{{ item.productName }}</router-link></v-card-title>
+                                   <v-card-title><router-link :to="'/item/'+item.id" style=" text-decoration:none">{{ item.item }}</router-link></v-card-title>
                                    <v-card-text style="padding:0" >{{ item.price }}원</v-card-text>
                                    <v-divider></v-divider>
                                    {{ item.created_at }}

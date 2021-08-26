@@ -92,7 +92,7 @@ class postController extends Controller
     public function addProduct()
     {
 
-        return 1;
+        // return 1;
         // $category = $request->category;
         // // $imagePath = $request->imagePath;
         // $saleAddress = $request->saleAddress;
@@ -105,8 +105,8 @@ class postController extends Controller
         $bumbuer = 'test';
 
         // DB::table('items')->insert(['img' => '이미지', 'user_id' => Auth::user()->id, 'price' => $price, 'category' => $category, 'sold' => 0, 'content' => $content, 'productName' => $productName, 'saleAddress' => $saleAddress, 'newProduct' => $newProduct, 'exchange' => $exchange, 'delivery' => $delivery]);
-        DB::table('items')->insert(['img' => '이미지', 'user_id' => 1, 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
+        $a = DB::table('items')->insert(['img' => null, 'user_id' => Auth::user(), 'price' => 1, 'category' => 'asd', 'sold' => 0, 'content' => 'asd', 'productName' => 'sdsds', 'saleAddress' => 'sdsd', 'newProduct' => 'asasdsdad', 'exchange' => 'asdsadasd', 'delivery' => 'sadsad']);
 
-        return 1;
+        return $a;
     }
 }

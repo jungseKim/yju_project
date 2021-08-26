@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
+    protected $table = "messages";
+
+    public function writer()
+    {
+        return $this->belongsTo(User::class, 'writer');
+    }
 }

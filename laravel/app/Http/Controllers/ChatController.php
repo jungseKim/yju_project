@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\ChatUser;
 use App\Models\Item;
 use App\Models\Message;
@@ -13,31 +14,41 @@ class ChatController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->id;
-        return ChatUser::where('user_to', $user);
+        // return Item::find(1)->ItemToChat();
+        // return 1;
+        $toSell = User::find(Auth::user()->id)->items();
+        $toBuy = ChatUser::where('user_id', Auth::user()->id)->get();
+
+        // return [$toSell, $toBuy];
+
+        return  response()->json([
+            'toSell' => $toSell,
+            'toBuy' => $toBuy
+        ], 200);
     }
 
-    public function store(Request $request)
+    public function store($id)
     {
-
         $user_id = Auth::user()->id;
-        $item_id = $request->item_id;
+        $item_id = $id;
+        $user = Item::find($item_id)->user()->get()[0];
 
-        if ($user_id == Item::find($item_id)->user_id()->id) {
+        // return $user[0];
+        // return $user->id;
+
+        if ($user_id == $user->id) {
             return  response()->json([
                 'message' => '판매자는 자신과 채팅못함'
             ], 299);
         }
 
         $check = ChatUser::where('user_id', $user_id)
-            ->orWhere('item_id', $item_id)->first();
+            ->Where('item_id', $item_id)->first();
+
+        // return $check;
+
         if ($check) {
-            return response()->json([
-                'messages'
-                => $check->history(),
-                'roomid' =>
-                $check->id
-            ], 201);
+            return redirect('/api/room/' . $check->id);
         }
 
         $chat = new ChatUser();
@@ -47,7 +58,7 @@ class ChatController extends Controller
 
         return response()->json([
             'roomid' =>
-            $check->id
+            $chat->id
         ], 202);
     }
 
@@ -62,5 +73,24 @@ class ChatController extends Controller
         $message->ChatRoom_id = $request->roomid;
         $message->writer = Auth::user()->id;
         $message->text = $request->text;
+        $message->save();
+
+        MessageSent::dispatch($message->load('writer'));
+
+        return $message->load('writer');
+    }
+
+    public function room($id)
+    {
+        $room = ChatUser::find($id);
+
+        // return $room->history()->toJson();
+        return response()->json([
+            // 'messages'
+            // => $room->history(),
+            'roomid' => $room->id,
+            'messages'
+            => $room->history()->load('writer'),
+        ], 203);
     }
 }

@@ -9,6 +9,8 @@ import MyPage from '../views/MyPage.vue'
 import Chat from '../views/Chat.vue'
 import Sale from '../views/Sale.vue'
 import Item from '../views/Item.vue'
+import ChatList from '../views/ChatList.vue'
+import ChatRoom from '../views/ChatRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +24,8 @@ const routes = [
   { path: '/sale', name: 'Sale', component: Sale },
   { path: '/chat', name: 'Chat', component: Chat },
   { path: '/item/:itemId', name: 'Item', component: Item },
+    { path: '/ChatList', name: 'ChatList', component: ChatList },
+    { path: '/ChatRoom/', name: 'ChatRoom', component: ChatRoom   },
    
 ]
 
@@ -32,12 +36,21 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+   console.log(from);
   const loggedIn = localStorage.getItem('user')
   if (to.matched.some(record => record.meta.auth) && !loggedIn) {
     next('/login')
     return
   }
+  if (to.name == 'ChatRoom') {
+    console.log(from);
+    if (from.name == 'Item'||from.name=='ChatList'||from.name==null) {
+        next()
+    }
+    else next('/')
+  }
   next()
 })
+
 
 export default router
