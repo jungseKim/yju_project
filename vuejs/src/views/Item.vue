@@ -43,13 +43,17 @@
                 <v-container class="qq">
                 </v-container>               
         </v-container>
+          <Comment/>
     </v-container>
     
 </template>
 
 <script>
+import Comment from "./Comment.vue";
 export default {
-    
+    components:{
+    Comment
+  },
 }
 </script>
 

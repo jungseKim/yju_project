@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         $user=new User();
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->password=$request->password;
+        $user->password=Hash::make($request->password);
         $user->address=$request->address;
             $user->save();
         return response($user, 202);

@@ -160,6 +160,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -180,6 +181,7 @@ export default {
       priceRules: [(v) => !!v || "가격은 필수입니다"],
     };
   },
+  
   methods: {
     onsubmitForm() {
       if (this.$refs.form.validate()) {
