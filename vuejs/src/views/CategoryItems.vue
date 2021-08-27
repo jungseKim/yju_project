@@ -2,7 +2,7 @@
        <v-container>
               <h1>물건</h1>
               
-              <v-row class="d-flex" width="1100px">
+              <v-row class="itemsRow" width="1100px">
                      <v-col v-for="item in items" :key="item.id" class="col" cols="3">
                             <v-card width="270px" height="270px" style="text-align:right">
                                    <v-img width="270px" height="150" contain :src="imagePath+serSerarch(item.img)" />
@@ -36,7 +36,8 @@ export default {
               }
        },
        mounted(){
-              axios.get('/add')
+                console.log(this.$route.query.title);
+              axios.post('/items', {data:this.$route.query.title})
               .then(response=>{
                      console.log(response.data)
                      this.items=response.data
@@ -52,5 +53,9 @@ export default {
 .container {
        width: 1200px;
        margin-top: 20px;
+}
+.itemsRow {
+    display: flex;
+    /* justify-contents: space-between; */
 }
 </style>

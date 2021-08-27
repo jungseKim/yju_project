@@ -27,7 +27,20 @@
         </v-btn>
         <v-spacer></v-spacer>
 
-            <v-btn icon class="mr-4" @click="myPage">
+            <v-btn icon class="mr-5" v-if="$store.state.user==null" @click="login">
+              <v-icon>mdi-power</v-icon>login
+            </v-btn>
+
+            <v-btn icon class="mr-5" v-else @click="logout">
+              <v-icon>mdi-power</v-icon>logout
+            </v-btn>
+
+
+       <template v-slot:extension>
+          
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <v-btn icon class="mr-4" @click="myPage">
               <v-icon>mdi-account-circle</v-icon>MY
             </v-btn>
 
@@ -38,20 +51,6 @@
             <v-btn icon class="mr-5" @click="sale">
               <v-icon>mdi-cart-variant</v-icon>판매하기
             </v-btn>
-
-            <v-btn icon class="mr-5" v-if="$store.state.user==null" @click="login">
-              <v-icon>mdi-cart-variant</v-icon>login
-            </v-btn>
-
-            <v-btn icon class="mr-5" v-else @click="logout">
-              <v-icon>mdi-cart-variant</v-icon>logout
-            </v-btn>
-
-
-       <template v-slot:extension>
-          
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          
         </template> 
       </v-toolbar>
       
@@ -69,6 +68,7 @@
             v-for="item in categorys"
             :key="item.title"
             link
+            @click="categoryClick(item.title)"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -128,19 +128,23 @@ export default {
       this.$store.dispatch('logout')
     },
     login(){
-      this.$router.push('login');
+      this.$router.push('/login');
     },
     write(){
-      this.$router.push('write');
+      this.$router.push('/write');
     },
     myPage(){
-      this.$router.push('MyPage');
+      this.$router.push('/MyPage');
     },
     chat(){
-      this.$router.push('Chat');
+      this.$router.push('/Chat');
     },
     sale(){
-      this.$router.push('Sale');
+      this.$router.push('/Sale');
+    },
+    categoryClick(title){
+      this.$router.push({name:'CategoryItems', query:{title:title}})
+      this.$router.go(this.$router.currentRoute);
     }
     
    }

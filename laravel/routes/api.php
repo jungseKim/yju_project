@@ -53,5 +53,6 @@ Route::post('/login', function (Request $request) {
 Route::get('/add', [ItemController::class, 'index']);
 
 Route::get('/item/{id}', [ItemController::class, 'show']);
+Route::post('/items', [ItemController::class, 'showCategory']); // query 스트링은 get으로 안됨
 
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
