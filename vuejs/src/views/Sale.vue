@@ -132,6 +132,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -151,9 +152,7 @@ export default {
       priceRules: [(v) => !!v || "가격은 필수입니다"],
     };
   },
-  mounted() {
-    console.log(this.$store.state.user.user.id);
-  },
+  
   methods: {
     onsubmitForm() {
       console.log(this.productImage);

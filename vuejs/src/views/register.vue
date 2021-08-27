@@ -12,7 +12,6 @@
                 required
                 outlined
             ></v-text-field>
-
             이메일
             <v-text-field
                 v-model="email"
@@ -99,7 +98,7 @@ export default {
         ],
         emailRules: [
             (v) => !!v || "이메일을 입력해주세요.",
-            (v) => /.+@.+\..+/.test(v) || "이메일 형식이 올바르지 않습니다."
+            (v) => /.+@.+\..+/.test(v) || "이메일 형식이 올바르지 않습니다.",
         ],
         passwordRules: [
             (v) => !!v || "비밀번호를 입력해주세요.",
@@ -115,9 +114,9 @@ export default {
                 this.password === "" ||
                 this.password2 === "" ||
                 this.address === "" ||
-                this.email === ""||
+                this.email === "" ||
                 this.password !== this.password2 ||
-                /.+@.+\..+/.test(this.email)==false
+                /.+@.+\..+/.test(this.email) == false
             ) {
                 return false;
             } else return true;
@@ -151,34 +150,42 @@ export default {
             }).open();
         },
 
-      validate () {
-       if(this.password!=this.password2){
-              return alert('password not matched')
-       }else{
-              this.password_confirmation=true;
-       }
-       console.log(this.address);
-       axios.post('/register',{
-              email:this.email,
-              name:this.name,
-              password:this.password,
-              password_confirmation:this.password_confirmation,
-              address:this.address
-       }).then(response=>{
-              console.log(response.status)
-              this.$router.push('/login');
-       }).catch(err=>{
-               console.log(err.response.data);
-               
-               alert('사용불가능한 이메일 입니다')
-               this.email='';
-               
-       })
-      },
-      reset () {
-        this.$refs.form.reset()
-      }
-      
+        validate() {
+            if (this.password != this.password2) {
+                return alert("비밀번호가 일치하지 않습니다.");
+            } else {
+                this.password_confirmation = true;
+            }
+            console.log(this.address);
+            axios
+                .post("/register", {
+                    email: this.email,
+                    name: this.name,
+                    password: this.password,
+                    password_confirmation: this.password_confirmation,
+                    address: this.address,
+                })
+                .then((response) => {
+                    console.log(response.status);
+                    this.$router.push("/login");
+                })
+                .catch((err) => {
+                    // err.response.data;
+                    console.log("register error");
+                    if (err.response.data.email.length == 1) {
+                        alert(
+                            "이미 사용 중인 이메일입니다. 이메일을 다시 입력해주세요."
+                        );
+                    } else
+                        alert(
+                            "사용 불가능한 이메일 입니다. 이메일을 다시 입력해주세요."
+                        );
+                    this.email = "";
+                });
+        },
+        reset() {
+            this.$refs.form.reset();
+        },
     },
 };
 </script>

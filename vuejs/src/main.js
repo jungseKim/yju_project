@@ -7,10 +7,9 @@ import product from './store/modules/product'
 
 import axios from 'axios'
 
-
 Vue.config.productionTip = false
 
-axios.defaults.withCredentials=true
+// axios.defaults.withCredentials=true
 //쿠기 보내려면 이것 트로
 axios.defaults.baseURL = 'http://localhost:8000/api'
 

@@ -82,49 +82,17 @@
                 </v-tabs-items>              
             </v-card>    
         </v-container>
+          <Comment/>
     </v-container>
     
 </template>
 
 <script>
-
-import axios from 'axios'
+import Comment from "./Comment.vue";
 export default {
-    data() {
-        return {
-            item : {},
-            tab: null,
-            text : '',
-            imagePath: 'http://localhost:8000/storage/image/',
-            address : ''
-        }
-
-    },
-    methods:{
-              serSerarch(e){
-                     if(!e){
-                            return 'noimage.jpg'
-                     }else{return e}
-              },
-              contentSearch(i){
-                  if(i == 1){
-                      this.text = this.item.content
-                      return this.text
-                  }
-              }
-    },
-    mounted() {
-        axios.get('/item/'+this.$route.params.itemId)
-              .then(response=>{
-                    //  console.log(1)
-                     console.log(response.data)
-                     this.item=response.data[0]
-                     this.address=response.data[1]
-              })
-              .catch(err => {
-                     console.log(err)
-              })
-    },
+    components:{
+    Comment
+  },
 }
 </script>
 
