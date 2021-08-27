@@ -57,6 +57,18 @@ class ItemController extends Controller
         $address = $user->address;
         return [Item::find($id), $address, $relatedProducts];
     }
+    public function showCategory(Request $request)
+    {
+        $title =  $request->data;
+        // return 1;
+        // echo "<script>console.log('PHP_Console:".$id."');<script>";
+        // $item = Item::find($id);
+        // $relatedProducts = DB::table('items')->where('category', $item->category)->where('productName', '<>', $item->productName)->get();
+        // $user = User::find($item->user_id);
+        //  echo "<script>console.log('PHP_Console:".DB::table('items')->where('category','=', $title)->get()."');<script>";
+        // $address = $user->address;
+        return DB::table('items')->where('category','=', $title)->get();
+    }
 
     /**
      * Show the form for editing the specified resource.

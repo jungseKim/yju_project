@@ -68,6 +68,7 @@
             v-for="item in categorys"
             :key="item.title"
             link
+            @click="categoryClick(item.title)"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -140,6 +141,10 @@ export default {
     },
     sale(){
       this.$router.push('/Sale');
+    },
+    categoryClick(title){
+      this.$router.push({name:'CategoryItems', query:{title:title}})
+      this.$router.go(this.$router.currentRoute);
     }
     
    }

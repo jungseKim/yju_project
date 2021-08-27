@@ -9,6 +9,7 @@ import MyPage from '../views/MyPage.vue'
 import Chat from '../views/Chat.vue'
 import Sale from '../views/Sale.vue'
 import Item from '../views/Item.vue'
+import CategoryItems from '../views/CategoryItems.vue'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,8 @@ const routes = [
   { path: '/sale', name: 'Sale', component: Sale },
   { path: '/chat', name: 'Chat', component: Chat },
   { path: '/item/:itemId', name: 'Item', component: Item },
+  { path: '/items', name: 'CategoryItems', component: CategoryItems },
+  
    
 ]
 
