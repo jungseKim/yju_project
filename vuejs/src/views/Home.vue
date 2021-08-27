@@ -13,7 +13,7 @@
                                    {{ item.created_at }}
                             </v-card>
                      </v-col>
-
+              </v-row>
     <v-row>
       <v-col v-for="item in items" :key="item.id">
         <v-card width="270px" height="270px" style="text-align: right">
