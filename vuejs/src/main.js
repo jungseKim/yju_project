@@ -23,6 +23,7 @@ new Vue({
     if (userInfo) {
       const userData = JSON.parse(userInfo);
       this.$store.commit("setUserData", userData);
+      // this.$store.commit("setUserData", );
     }
     axios.interceptors.response.use(
       (response) => response,

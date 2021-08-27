@@ -24,3 +24,8 @@ user : id, email, password, 등급, 위치,
 오늘 배운것
 mounted는 바로 화면을 보여주는 부분이기 때문에 
 patch는 들어가서는 안된다.
+
+-APP_KEY-
+
+APP_KEY키를 생성하지 않고 로그인시 csrf 500에러가 발생한다
+해결법은 해당 Laravel서버에서 APP_KEY를 받고 작업해야한다

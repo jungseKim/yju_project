@@ -40,6 +40,8 @@ class UserController extends Controller
             ->where('id', $userId)
             ->update(['address' => $addressUpdate]);
 
-        return redirect('/');
+
+
+        return $addressUpdate;
     }
 }

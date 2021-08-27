@@ -11,14 +11,14 @@
       </v-col>
       <v-col cols="4">
         <!-- <h1>{{ this.$store.state.user.user.name }}</h1> -->
-        <h1>{{ name }}</h1>
-        <h1>{{ email }}</h1>
+        <h1>{{ user.name }}</h1>
+        <h1>{{ user.email }}</h1>
         <v-btn>follow</v-btn>
         <p>6 followers 8 following</p>
       </v-col>
       <v-col cols="4">
         <!-- <h2>주소 : {{ this.$store.state.user.user.address }}</h2> -->
-        <h2>주소 : {{ address }}</h2>
+        <h2>주소 : {{ user.address }}</h2>
         <v-btn @click="showApi">수정</v-btn>
       </v-col>
     </v-row>
@@ -73,39 +73,31 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
-      users: [],
+      user: this.$store.state.user.user,
       tabs: null,
-      name: this.$store.state.user.user.name,
-      email: this.$store.state.user.user.email,
-      address: this.$store.state.user.user.address,
+      // address: this.$store.state.user.user.address,
       titles: ["판매중인 상품", "내가 본 내역", "찜"],
       // addressNum:'',
     };
   },
-  //   mounted() {
-  //     // axios
-  //     //   .post("/profile", {
-  //     //     userId: this.$store.state.user.user.id, //???
-  //     //   })
-  //     //   .then((response) => {
-  //     //     // alert('성공')
-  //     //     console.log(response.data);
-  //     //     this.users = response.data;
-  //     //     console.log(this.users);
-  //     //   })
-  //     //   .catch((err) => {
-  //     //     // alert('에러')
-  //     //     console.log(err);
-  //     //   });
-  //   },
+  mounted() {
+    console.log(localStorage.getItem("user"));
+    console.log(localStorage);
+  },
+  computed: {
+    address() {
+      return this.$store.state.user.user.address;
+    },
+  },
 
   methods: {
     showApi() {
+      console.log(localStorage);
+      console.log(localStorage.getItem("test"));
+      console.log(this.$store.state);
       new window.daum.Postcode({
         oncomplete: (data) => {
           let fullRoadAddr = data.roadAddress;
@@ -126,30 +118,36 @@ export default {
             fullRoadAddr += extraRoadAddr;
           }
           this.addressNum = data.zonecode;
-          this.$store.state.user.user.address = fullRoadAddr;
-          this.address = fullRoadAddr;
-          this.addressUpate();
+
+          // this.addressUpate();
+          const userData = JSON.parse(localStorage.getItem("user"));
+          userData.user.address = fullRoadAddr;
+          localStorage.setItem("user", JSON.stringify(userData));
+          this.$store.dispatch("addressUpdate", {
+            address: fullRoadAddr,
+            userId: this.$store.state.user.user.id,
+          });
         },
       }).open();
     },
 
-    addressUpate() {
-      axios.defaults.withCredentials = true;
-      axios
-        .patch("/addressUpdate", {
-          address: this.address,
-          userId: this.$store.state.user.user.id,
-        })
-        .then(() => {
-          console.log("성공");
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          window.location.href = "http://localhost:8080/MyPage";
-        });
-    },
+    // addressUpate() {
+    //   // axios.defaults.withCredentials = true;
+    //   // axios
+    //   //   .patch("/addressUpdate", {
+    //   //     address: this.address,
+    //   //     userId: this.$store.state.user.user.id,
+    //   //   })
+    //   //   .then(() => {
+    //   //     console.log("성공");
+    //   //   })
+    //   //   .catch((err) => {
+    //   //     console.log(err);
+    //   //   })
+    //   //   .finally(() => {
+    //   //     window.location.href = "http://localhost:8080/MyPage";
+    //   //   });
+    // },
   },
 };
 </script>
