@@ -9,6 +9,7 @@ import MyPage from '../views/MyPage.vue'
 import Chat from '../views/Chat.vue'
 import Sale from '../views/Sale.vue'
 import Item from '../views/Item.vue'
+// import Comment from '../views/Comment.vue'
 import CategoryItems from '../views/CategoryItems.vue'
 
 Vue.use(VueRouter)

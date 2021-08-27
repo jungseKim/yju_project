@@ -12,7 +12,6 @@
                 required
                 outlined
             ></v-text-field>
-
             이메일
             <v-text-field
                 v-model="email"
@@ -99,7 +98,7 @@ export default {
         ],
         emailRules: [
             (v) => !!v || "이메일을 입력해주세요.",
-            (v) => /.+@.+\..+/.test(v) || "이메일 형식이 올바르지 않습니다."
+            (v) => /.+@.+\..+/.test(v) || "이메일 형식이 올바르지 않습니다.",
         ],
         passwordRules: [
             (v) => !!v || "비밀번호를 입력해주세요.",
@@ -115,9 +114,9 @@ export default {
                 this.password === "" ||
                 this.password2 === "" ||
                 this.address === "" ||
-                this.email === ""||
+                this.email === "" ||
                 this.password !== this.password2 ||
-                /.+@.+\..+/.test(this.email)==false
+                /.+@.+\..+/.test(this.email) == false
             ) {
                 return false;
             } else return true;
@@ -171,9 +170,8 @@ export default {
                     this.$router.push("/login");
                 })
                 .catch((err) => {
-                    err.response.data;
+                    // err.response.data;
                     console.log("register error");
-                    console.log(/.+@.+\..+/.test(this.email));
                     if (err.response.data.email.length == 1) {
                         alert(
                             "이미 사용 중인 이메일입니다. 이메일을 다시 입력해주세요."

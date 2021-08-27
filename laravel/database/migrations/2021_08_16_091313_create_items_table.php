@@ -27,7 +27,6 @@ class CreateItemsTable extends Migration
             $table->string('productName')->nullable();
             $table->string('newProduct')->nullable();
             $table->string('exchange')->nullable();
-
         });
     }
 

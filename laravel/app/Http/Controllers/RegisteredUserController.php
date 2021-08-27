@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required'],
-            'address' => 'required|string'
+
         ]);
 
         if ($validator->fails()) {

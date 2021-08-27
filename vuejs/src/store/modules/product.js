@@ -19,7 +19,7 @@ export default{
         productAdd(payload){
             
            axios.post('/productAdd',{
-                content: payload.content,
+            content: payload.content,
             productName:payload.productName,
             saleAddress:payload.saleAddress,
             price:payload.price,

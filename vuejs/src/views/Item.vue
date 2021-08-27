@@ -106,6 +106,7 @@
                             <div v-else>
                                 <h3>상품문의</h3>
                                 <v-divider></v-divider>
+                                <Comment/>
                             </div>
                         </v-card>
                     </v-tab-item>
@@ -117,9 +118,12 @@
 </template>
 
 <script>
-
+import Comment from "./Comment.vue";
 import axios from 'axios'
 export default {
+    components:{
+    Comment
+  },
     data() {
         return {
             item : {},

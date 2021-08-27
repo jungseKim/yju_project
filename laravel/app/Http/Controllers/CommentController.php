@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
-use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ItemController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        // Item::all());
-
-        return Item::all();
+        $comments = Comment::all();
     }
 
     /**
@@ -37,9 +33,15 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, $itemId)
+    {   
+        // $userId = User::();
+        $comment=new Comment();
+        $comment->user_id=$request->user_id;
+        $comment->item_id=$itemId;
+        $comment->comment=$request->comment;
+        $comment->save();
+        return response($comment, 202);
     }
 
     /**
@@ -50,25 +52,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        // echo "<script>console.log('PHP_Console:".$id."');<script>";
-        $item = Item::find($id);
-        $relatedProducts = DB::table('items')->where('category', $item->category)->where('productName', '<>', $item->productName)->get();
-        $user = User::find($item->user_id);
-        //  echo "<script>console.log('PHP_Console:".$category."');<script>";
-        $address = $user->address;
-        return [Item::find($id), $address, $relatedProducts];
-    }
-    public function showCategory(Request $request)
-    {
-        $title =  $request->data;
-        // return 1;
-        // echo "<script>console.log('PHP_Console:".$id."');<script>";
-        // $item = Item::find($id);
-        // $relatedProducts = DB::table('items')->where('category', $item->category)->where('productName', '<>', $item->productName)->get();
-        // $user = User::find($item->user_id);
-        //  echo "<script>console.log('PHP_Console:".DB::table('items')->where('category','=', $title)->get()."');<script>";
-        // $address = $user->address;
-        return DB::table('items')->where('category','=', $title)->get();
+        //
     }
 
     /**
