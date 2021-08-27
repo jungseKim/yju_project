@@ -18,6 +18,7 @@
                 :type="'password'"
                 required
                 outlined
+                @keyup.enter="login"
             ></v-text-field>
 
             <v-btn
