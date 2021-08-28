@@ -152,17 +152,7 @@ export default {
       priceRules: [(v) => !!v || "가격은 필수입니다"],
     };
   },
-<<<<<<< HEAD
   
-=======
-<<<<<<< HEAD
-  mounted() {
-    console.log(this.$store.state.user.user.id);
-  },
-=======
-  
->>>>>>> minseong
->>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
   methods: {
     onsubmitForm() {
       console.log(this.productImage);

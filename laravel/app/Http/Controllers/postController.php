@@ -2,12 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
-use App\Models\Grade;
-use App\Models\Item;
-use App\Models\Post;
->>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -50,13 +44,10 @@ class postController extends Controller
         $productImage->storeAs('public/image', $filename);
 
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
         return 1;
         // $category = $request->category;
         // // $imagePath = $request->imagePath;

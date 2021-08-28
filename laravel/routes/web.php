@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->get('/api/show/{id}', [postController::class,
 
 // Route::post('/api/posts', [postController::class, 'store']);
 
-<<<<<<< HEAD
 Route::middleware('auth:sanctum')->post('/api/posts', [postController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/api/chatList', [ChatController::class, 'index']);
@@ -36,6 +35,3 @@ Route::middleware('auth:sanctum')->get('/api/chatList', [ChatController::class, 
 // Route::get('/api/item/{id}', [ItemController::class, 'show']);
 
 Route::middleware('auth:sanctum')->post('/api/chatPost', [ChatController::class, 'post']);
-=======
-Route::middleware('auth:sanctum')->post('/api/posts', [postController::class, 'store']);
->>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
