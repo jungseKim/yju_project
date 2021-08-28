@@ -67,7 +67,12 @@ Route::post('/login', function (Request $request) {
 
 Route::get('/add', [ItemController::class, 'index']);
 
+Route::get('/item/{id}', [ItemController::class, 'show']);
+Route::post('/items', [ItemController::class, 'showCategory']); // query 스트링은 get으로 안됨
 Route::post('/comment/{itemId}', [RegisteredUserController::class, 'store']);
+Route::post('/profile', [UserController::class, 'profile']);
+
+Route::patch('/addressUpdate', [UserController::class, 'addressUpdate']);
 
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
 
@@ -80,3 +85,9 @@ Route::middleware('auth:sanctum')->post('/deleteAccount', function () {
     return '회원탈퇴가 완료되었습니다.';
     // return $user;
 });
+Route::post('/imagepath', [postController::class, 'imagepath']);
+
+Route::post('/search', [postController::class, 'search']);
+Route::post('/addProduct', [postController::class, 'addProduct']);
+
+// Route::post('addSearch', [postController::class, 'addsearch']);
