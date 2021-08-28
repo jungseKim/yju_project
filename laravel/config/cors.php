@@ -31,6 +31,9 @@ return [
 
     'supports_credentials' => true,
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
 ];

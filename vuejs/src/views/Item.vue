@@ -88,11 +88,58 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+import axios from 'axios'
+export default {
+    data() {
+        return {
+            item : {},
+            tab: null,
+            text : '',
+            imagePath: 'http://localhost:8000/storage/image/',
+            address : ''
+        }
+
+    },
+    methods:{
+              serSerarch(e){
+                     if(!e){
+                            return 'noimage.jpg'
+                     }else{return e}
+              },
+              contentSearch(i){
+                  if(i == 1){
+                      this.text = this.item.content
+                      return this.text
+                  }
+              }
+    },
+    mounted() {
+        axios.get('/item/'+this.$route.params.itemId)
+              .then(response=>{
+                    //  console.log(1)
+                     console.log(response.data)
+                     this.item=response.data[0]
+                     this.address=response.data[1]
+              })
+              .catch(err => {
+                     console.log(err)
+              })
+    },
+=======
+>>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
 import Comment from "./Comment.vue";
 export default {
     components:{
     Comment
   },
+<<<<<<< HEAD
+=======
+>>>>>>> minseong
+>>>>>>> 2bff7c2074d829c15758258e9843f6b46fd9ce9b
 }
 </script>
 
