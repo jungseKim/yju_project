@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-container fluid>
     <v-row no-gutters>
       <v-col col-4>
@@ -33,16 +34,52 @@
       </v-col>
     </v-row>
   </v-container>
+=======
+    <div>
+        MyPage
+        <v-btn @click="deleteAccount">회원탈퇴</v-btn>
+        <div>{{text}}</div>
+    </div>
+>>>>>>> minseong
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+<<<<<<< HEAD
   data() {
     return {
       tabs: null,
     };
   },
 };
+=======
+    data(){
+        return {
+            text : null
+        }
+    },
+    methods:{
+        deleteAccount(){
+            axios.post('/deleteAccount').then(res=>{
+                // this.text=res.data.id;
+                     this.$store.dispatch('logout')
+                    const home = window.location.origin;
+                    this.text=res.data;
+                    alert(this.text);
+                    // location.href=`${home}/api/logout`;
+                    location.href=home;
+                }
+            )
+            // axios.post('/get').then(res=>{
+                //     console.log(res);
+            //     this.text=res.data;
+            //     }
+            // )
+        },
+    }
+}
+>>>>>>> minseong
 </script>
 
 

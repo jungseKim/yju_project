@@ -82,11 +82,13 @@
                 </v-tabs-items>              
             </v-card>    
         </v-container>
+          <Comment/>
     </v-container>
     
 </template>
 
 <script>
+<<<<<<< HEAD
 
 import axios from 'axios'
 export default {
@@ -125,6 +127,13 @@ export default {
                      console.log(err)
               })
     },
+=======
+import Comment from "./Comment.vue";
+export default {
+    components:{
+    Comment
+  },
+>>>>>>> minseong
 }
 </script>
 

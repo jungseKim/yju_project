@@ -24,6 +24,7 @@
       <div>{{post.content}}</div>
     </v-card-text>
   </v-card>
+  
 </template>
 
 <script>

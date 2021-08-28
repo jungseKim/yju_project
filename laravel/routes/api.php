@@ -5,9 +5,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\postController;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -64,13 +67,21 @@ Route::post('/login', function (Request $request) {
 
 Route::get('/add', [ItemController::class, 'index']);
 
-<<<<<<< HEAD
-// Route::middleware('auth:sanctum')->post('/addProduct', [postController::class, 'addProduct']);
-Route::post('/addProduct', [postController::class, 'addProduct']);
 
-Route::post('/imagepath', [postController::class, 'imagepath']);
-=======
 Route::get('/item/{id}', [ItemController::class, 'show']);
 
 Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
->>>>>>> 29a57004a1c543ebbd5ea0a1a75db51b66981f85
+
+Route::post('/comment/{itemId}', [RegisteredUserController::class, 'store']);
+
+Route::middleware('auth:sanctum')->post('/productAdd', [postController::class], 'addProduct');
+
+Route::middleware('auth:sanctum')->post('/deleteAccount', function () {
+    $userId = Auth::user()->id;
+
+    DB::delete('DELETE FROM users WHERE id = ?', [$userId]);
+
+    // $user->delete();
+    return '회원탈퇴가 완료되었습니다.';
+    // return $user;
+});
