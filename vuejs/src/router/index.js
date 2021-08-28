@@ -12,20 +12,21 @@ import Item from "../views/Item.vue";
 // import Comment from '../views/Comment.vue'
 import CategoryItems from "../views/CategoryItems.vue";
 
-Vue.use(VueRouter);
+
+Vue.use(VueRouter)
 
 const routes = [
-  { path: "/", name: "Home", component: home },
-  { path: "/login", name: "Home", component: login },
-  { path: "/register", name: "register", component: register },
-  { path: "/write", name: "write", component: write, meta: { auth: true } },
-  { path: "/Show/:postId", name: "Show", component: Show },
-  { path: "/mypage", name: "MyPage", component: MyPage },
-  { path: "/sale", name: "Sale", component: Sale },
-  { path: "/chat", name: "Chat", component: Chat },
+  { path: '/home', name: 'home', component: home },
+  { path: '/login', name: 'login', component: login },
+  { path: '/register', name: 'register', component: register },
+  { path: '/write', name: 'write', component: write, meta: { auth: true } },
+  { path: '/Show/:postId', name: 'Show', component: Show },
+  { path: '/mypage', name: 'MyPage', component: MyPage },
+  { path: '/sale', name: 'Sale', component: Sale },
+  { path: '/chat', name: 'Chat', component: Chat },
   { path: "/item/:itemId", name: "Item", component: Item },
   { path: "/items", name: "CategoryItems", component: CategoryItems },
-];
+]
 
 const router = new VueRouter({
   mode: "history",

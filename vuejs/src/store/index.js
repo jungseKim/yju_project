@@ -18,6 +18,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
+
+    searchPost:null,
+
+     
+
+    
+      
   },
 
   mutations: {
@@ -42,6 +49,12 @@ export default new Vuex.Store({
       localStorage.setItem("address", res.data.address);
       console.log("동영");
       console.log(state.users);
+    },
+    searchUpdate(state,payload){
+      state.searchPost=payload;
+      console.log('asdasd');
+      console.log(state.searchPost);
+      console.log('ehddud');
     },
   },
 
@@ -94,22 +107,7 @@ export default new Vuex.Store({
         })
         .catch(() => {});
     },
-    addProduct() {
-      axios
-        .post("/addProduct")
-        //      content: payload.content,
-        //  productName:payload.productName,
-        //  saleAddress:payload.saleAddress,
-        //  price:payload.price,
-        //  newProduct:payload.newProduct,
-        //  exchange:payload.exchange,
-        //  delivery:payload.delivery,
-        //  })
-        .then(() => {
-          alert("판매등록성공");
-        })
-        .catch(() => {});
-    },
+   
     addressUpdate({ commit }, payload) {
       axios.defaults.withCredentials = true;
       axios
@@ -128,6 +126,18 @@ export default new Vuex.Store({
         })
         .finally(() => {});
     },
+
+    addProduct() {
+      axios
+        .post("/addProduct")
+       
+        .then(() => {
+          alert("판매등록성공");
+        })
+        .catch(() => {});
+    },
+   
+
   },
 
   getters: {

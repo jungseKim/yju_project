@@ -85,3 +85,9 @@ Route::middleware('auth:sanctum')->post('/deleteAccount', function () {
     return '회원탈퇴가 완료되었습니다.';
     // return $user;
 });
+Route::post('/imagepath', [postController::class, 'imagepath']);
+
+Route::post('/search', [postController::class, 'search']);
+Route::post('/addProduct', [postController::class, 'addProduct']);
+
+// Route::post('addSearch', [postController::class, 'addsearch']);
