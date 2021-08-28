@@ -10,11 +10,12 @@ import Chat from '../views/Chat.vue'
 import Sale from '../views/Sale.vue'
 import Item from '../views/Item.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', name: 'Home', component: home },
-  { path: '/login', name: 'Home', component: login },
+  { path: '/home', name: 'home', component: home },
+  { path: '/login', name: 'login', component: login },
   { path: '/register', name: 'register', component: register },
   { path: '/write', name: 'write', component: write, meta: { auth: true } },
   { path: '/Show/:postId', name: 'Show', component: Show },

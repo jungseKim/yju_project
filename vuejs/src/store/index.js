@@ -6,9 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: 
+    user: null,
 
-    null
+    searchPost:null,
+
+     
+
+    
       
   },
 
@@ -23,6 +27,12 @@ export default new Vuex.Store({
       state.user = null;
       localStorage.removeItem('user')
       location.reload()
+    },
+    searchUpdate(state,payload){
+      state.searchPost=payload;
+      console.log('asdasd');
+      console.log(state.searchPost);
+      console.log('ehddud');
     }
   },
 
@@ -75,7 +85,9 @@ export default new Vuex.Store({
        .catch(()=>{
 
        })
-   }
+   },
+   
+
   },
 
   getters : {

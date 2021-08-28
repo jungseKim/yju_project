@@ -8,15 +8,17 @@
           <br />
 
           <div v-if="!image">
-            <h2>Select an image</h2>
-
-            <input
-              ref="productImage"
-              type="file"
-              @change="onFileChange"
-              name="imgfile"
-              enctype="multipart/form-data"
-            />
+            <v-row>
+              <v-col cols="6">
+                <input
+                  ref="productImage"
+                  type="file"
+                  @change="onFileChange"
+                  name="imgfile"
+                  enctype="multipart/form-data"
+                />
+              </v-col>
+            </v-row>
           </div>
           <div v-else>
             <img :src="image" />
@@ -156,7 +158,6 @@ export default {
   },
   methods: {
     onsubmitForm() {
-      console.log(this.productImage);
       if (this.$refs.form.validate()) {
         const form = new FormData();
         form.append("category", this.category);
@@ -180,6 +181,7 @@ export default {
       }
     },
     onFileChange(e) {
+      // console.log(this.productImage);
       this.productImage = this.$refs.productImage.files[0];
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;

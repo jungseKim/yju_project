@@ -68,3 +68,7 @@ Route::get('/add', [ItemController::class, 'index']);
 Route::post('/addProduct', [postController::class, 'addProduct']);
 
 Route::post('/imagepath', [postController::class, 'imagepath']);
+
+Route::post('/search', [postController::class, 'search']);
+
+// Route::post('addSearch', [postController::class, 'addsearch']);

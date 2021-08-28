@@ -13,13 +13,17 @@
           />
 
           <v-toolbar-title
-            ><router-link to="/" style="text-decoration: none"
-              >Logo</router-link
+            ><v-btn btn style="text-decoration: none" @click="reload"
+              >Logo</v-btn
             ></v-toolbar-title
           >
 
           <v-spacer></v-spacer>
-          <v-text-field />
+          <v-col class="d-flex" sm="1">
+            <v-select v-model="select" :items="how" label="선택" dense solo>
+            </v-select>
+          </v-col>
+          <v-text-field v-model="search" @keyup.enter="enterkey" />
           <v-btn icon>
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
@@ -87,11 +91,16 @@
 </template>
     
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
 
   data() {
     return {
+      select: "",
+      search: "",
+      how: ["제목", "판매자"],
       drawer: null,
       categorys: [
         { title: "의류", icon: "mdi-tshirt-crew" },
@@ -123,6 +132,55 @@ export default {
     },
   },
   methods: {
+    reload() {
+      // this.$router.push("home");
+      window.location.href = "/home";
+    },
+    enterkey() {
+      // if (this.$route.params.from === "home") {
+      //   this.$router.go();
+      // }
+      if (this.select === "제목") {
+        console.log(this.$router);
+        axios
+          .post("/search", {
+            productName: this.search,
+          })
+          .then((res) => {
+            this.$router
+              .push({
+                name: "home",
+                params: {
+                  from: this.$router.history.current.name,
+                },
+              })
+              .catch(() => {});
+            this.$store.commit("searchUpdate", res.data.searchResult);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        axios
+          .post("/search", {
+            userName: this.search,
+          })
+          .then((res) => {
+            this.$router
+              .push({
+                name: "home",
+                params: {
+                  from: this.$router.history.current.name,
+                },
+              })
+              .then(() => {});
+            this.$store.commit("searchUpdate", res.data.searchResult);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
     logout() {
       this.$store.dispatch("logout");
     },
